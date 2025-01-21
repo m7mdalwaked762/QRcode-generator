@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Url To QR code</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <div>
+    <h1>Url To QR code</h1>
+    <input type="text" placeholder=" Example:https://www.youtube.com" id="text" >
+    <button id = "generate">Generate</button>
+   <canvas id="qrcodeContainer"></canvas>
+    
+ </div>
+ <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script type="text/javascript">
+         document.getElementById('generate').addEventListener('click', function () {
+            const text = document.getElementById('text').value;
+            const qrcodeContainer = document.getElementById('qrcodeContainer');
+
+            qrcodeContainer.innerHTML = '';
+
+      if (text.trim() !== '') {
+        QRCode.toCanvas(qrcodeContainer, text, { width: 200,height:200 }, function (error) {
+          if (error) console.error(error);
+          console.log('QR Code generated');
+        });
+      } else {
+        alert('Please enter text or a URL to generate a QR code.');
+      }
+    });
+       
+
+        </script>
+</body>
+</html>
